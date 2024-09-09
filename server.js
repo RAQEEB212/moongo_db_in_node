@@ -3,19 +3,16 @@ const connectDB = require('./db');
 const userRoutes = require('./routes/userRoutes');
 require('dotenv').config();
 
-// Initialize Express app
 const app = express();
 
-// Middleware to parse incoming JSON requests
-app.use(express.json());
+app.use(express.json()); // Middleware to parse JSON
 
 // Connect to MongoDB
 connectDB();
 
-// Routes
+// Use the user routes
 app.use('/', userRoutes);
 
-// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
